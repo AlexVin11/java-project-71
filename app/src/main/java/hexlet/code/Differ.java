@@ -10,7 +10,7 @@ import picocli.CommandLine.Parameters;
 public class Differ implements Runnable{
 
     @Option(names = {"-f", "--format"}, description = "output format [default: stylish]", paramLabel = "format")
-    String format;
+    String format = "stylish";
     @Option (names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit.")
     boolean helpRequested = false;
     @Option (names = {"-V", "--version"}, versionHelp = true, description = "Print version information and exit.")
@@ -18,7 +18,7 @@ public class Differ implements Runnable{
     @Parameters(index = "0", description = "path to first file", paramLabel = "filepath1") String pathToFirstFile;
     @Parameters(index = "1", description = "path to second file", paramLabel = "filepath2") String pathToSecondFile;
 
-    /*public static void generate() {
+    /*public static String generate() {
         System.out.println("generate created");
     }*/
 
