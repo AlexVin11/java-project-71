@@ -1,6 +1,6 @@
 plugins {
     application
-    //checkstyle
+    checkstyle
     java
     //jacoco
     id("se.patrikerdes.use-latest-versions") version "0.2.18"
@@ -26,6 +26,10 @@ dependencies {
 
 tasks.withType<JavaCompile>(){
     options.compilerArgs.addAll(listOf("-Aproject=${project.group}/${project.name}"))
+}
+
+tasks.getByName("run", JavaExec::class) {
+    standardInput = System.`in`
 }
 
 application {
