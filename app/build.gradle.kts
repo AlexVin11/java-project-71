@@ -29,7 +29,6 @@ dependencies {
     annotationProcessor("info.picocli:picocli-codegen:4.7.5")
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
     implementation("com.fasterxml.jackson.core:jackson-databind:2.17.0")
-
 }
 
 tasks.withType<JavaCompile>(){
