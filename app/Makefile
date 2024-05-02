@@ -6,4 +6,4 @@ run-dist:
 	# Создание jar исполняемого файла
 	./gradlew installDist
 	# Запуск исполняемого файла
-	./build/install/app/bin/app -h
+	./build/install/app/bin/app
