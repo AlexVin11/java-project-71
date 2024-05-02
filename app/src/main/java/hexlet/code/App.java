@@ -1,6 +1,5 @@
 package hexlet.code;
 
-import com.google.common.collect.MapDifference;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Command;
@@ -8,8 +7,6 @@ import picocli.CommandLine.Parameters;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.Callable;
 
 @Command(name = "gendiff",
@@ -17,7 +14,7 @@ import java.util.concurrent.Callable;
 
 public class App implements Callable<Integer> {
 
-    private static final String HOME = System.getProperty("user.home");
+    static final String HOME = System.getProperty("user.home");
 
     @Option(names = {"-f", "--format"}, description = "output format [default: stylish]", paramLabel = "format")
     String format;
