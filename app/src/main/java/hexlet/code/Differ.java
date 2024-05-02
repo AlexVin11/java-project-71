@@ -3,7 +3,6 @@ package hexlet.code;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,14 +11,16 @@ import java.util.Map;
 
 
 public class Differ{
-    public static HashMap generate(Path p1, Path p2) throws IOException {
+    public static String generate(Path p1, Path p2) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         String firstFileContent = Files.readString(p1);
         String secondFileContent = Files.readString(p2);
         HashMap<String, Object> firstFileAsMap
-                = (HashMap<String, Object>) objectMapper.readValue(firstFileContent, new TypeReference<Map<String,Object>>(){});
+                = (HashMap<String, Object>) objectMapper.readValue(firstFileContent, new TypeReference<Map<String, Object>>() {
+        });
         HashMap<String, Object> secondFileAsMap
-                = (HashMap<String, Object>) objectMapper.readValue(secondFileContent, new TypeReference<Map<String,Object>>(){});
+                = (HashMap<String, Object>) objectMapper.readValue(secondFileContent, new TypeReference<Map<String, Object>>() {
+        });
         var resultMap = new HashMap<String, Object>();
         var firstFileEntrys = firstFileAsMap.entrySet();
         var secondFileEntrys = secondFileAsMap.entrySet();
@@ -46,6 +47,16 @@ public class Differ{
                 resultMap.put(newKey, secondFileEntry.getValue());
             }
         }
-        return resultMap;
+        StringBuilder resultMapAsString = new StringBuilder("{");
+        for (String key : resultMap.keySet()) {
+            if (key.startsWith("+") || key.startsWith("-")) {
+                resultMapAsString.append("\n" + " ".repeat(4) + key + ": " + resultMap.get(key) + ", ");
+            } else {
+                resultMapAsString.append("\n" + " ".repeat(6) + key + ": " + resultMap.get(key) + ", ");
+            }
+        }
+        resultMapAsString.delete(resultMapAsString.length() - 2, resultMapAsString.length()).append("\n" + "}");
+        String result = resultMapAsString.toString();
+        return result;
     }
 }
