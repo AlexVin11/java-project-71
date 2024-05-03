@@ -6,8 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 public class Differ{
@@ -31,7 +30,8 @@ public class Differ{
             }
             if (secondFileAsMap.containsKey(entryFirstFile.getKey())
                     && secondFileAsMap.get(entryFirstFile.getKey()).equals(entryFirstFile.getValue())) {
-                resultMap.put(entryFirstFile.getKey(), entryFirstFile.getValue());
+                String processedKey = "  " + entryFirstFile.getKey();
+                resultMap.put(processedKey, entryFirstFile.getValue());
             }
         }
         for (var secondFileEntry : secondFileEntrys) {
@@ -47,13 +47,10 @@ public class Differ{
                 resultMap.put(newKey, secondFileEntry.getValue());
             }
         }
+        SortedMap<String, Object> sortedRes = new TreeMap<>(resultMap);
         StringBuilder resultMapAsString = new StringBuilder("{");
-        for (String key : resultMap.keySet()) {
-            if (key.startsWith("+") || key.startsWith("-")) {
-                resultMapAsString.append("\n" + " ".repeat(4) + key + ": " + resultMap.get(key) + ", ");
-            } else {
-                resultMapAsString.append("\n" + " ".repeat(6) + key + ": " + resultMap.get(key) + ", ");
-            }
+        for (String key : sortedRes.keySet()) {
+            resultMapAsString.append("\n" + " ".repeat(4) + key + ": " + resultMap.get(key) + ", ");
         }
         resultMapAsString.delete(resultMapAsString.length() - 2, resultMapAsString.length()).append("\n" + "}");
         String result = resultMapAsString.toString();
