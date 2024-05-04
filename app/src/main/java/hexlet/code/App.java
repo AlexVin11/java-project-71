@@ -7,6 +7,7 @@ import picocli.CommandLine.Parameters;
 
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.SortedMap;
 import java.util.concurrent.Callable;
 
 @Command(name = "gendiff",
@@ -35,9 +36,9 @@ public class App implements Callable<Integer> {
         Path pathToSecondFile = Differ.generatePath(secondFileName);
         String firstFileContent = Differ.readFileContent(pathToFirstFile);
         String secondFileContent = Differ.readFileContent(pathToSecondFile);
-        var firstFileMap = Differ.generateHashMapFromFileContent(firstFileContent);
-        var secondFileMap = Differ.generateHashMapFromFileContent(secondFileContent);
-        var mapOfKeyStatus = Differ.generateKeyStatusHashMap(firstFileMap, secondFileMap);
+        HashMap<String, Object> firstFileMap = Differ.generateHashMapFromFileContent(firstFileContent);
+        HashMap<String, Object> secondFileMap = Differ.generateHashMapFromFileContent(secondFileContent);
+        SortedMap<String, String> mapOfKeyStatus = Differ.generateKeyStatusHashMap(firstFileMap, secondFileMap);
         String resultOfDiff = Differ.generate(mapOfKeyStatus, firstFileMap, secondFileMap);
         System.out.println(resultOfDiff);
         return 0;
