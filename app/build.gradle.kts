@@ -31,7 +31,6 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.17.0")
     // https://mvnrepository.com/artifact/com.google.guava/guava
     implementation("com.google.guava:guava:33.1.0-jre")
-
 }
 
 tasks.withType<JavaCompile>(){
