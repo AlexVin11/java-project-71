@@ -17,8 +17,9 @@ jobs:
       - uses: gradle/gradle-build-action@v3
         with:
           gradle-version: 8.7
-      - name: gradlew Checkstyle and Test commands
+      - name: gradlew Build, Checkstyle and Test commands
         run: |
+          ./gradlew build
           ./gradlew checkstyleMain
           ./gradlew test
       - name: Publish code coverage
