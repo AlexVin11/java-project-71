@@ -30,7 +30,7 @@ test:
 
 .PHONY: report
 report:
-	./gradlew jacocoTestReport
+	cd app && ./gradlew jacocoTestReport
 
 lint:
 	./gradlew checkstyleMain
