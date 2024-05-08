@@ -6,7 +6,6 @@ setup:
 clean:
 	./gradlew clean
 
-.PHONY: build
 build:
 	./gradlew clean build
 
@@ -24,13 +23,11 @@ run-dist:
 run:
 	./gradlew run
 
-.PHONY: test
 test:
 	./gradlew test
 
-.PHONY: report
 report:
-	cd app && ./gradlew jacocoTestReport
+	./gradlew jacocoTestReport
 
 lint:
 	./gradlew checkstyleMain
