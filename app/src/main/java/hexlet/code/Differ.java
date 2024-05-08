@@ -8,9 +8,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
-public class Differ{
+public class Differ {
 
     static final String[] KEYSTATUS = {"key edited", "key not edited"};
     static final Character[] EDITSIGN = {'+', '-'};
@@ -23,12 +26,12 @@ public class Differ{
         return Files.readString(path);
     }
 
-    public static HashMap<String, Object> generateHashMapFromFileContent(String fileContent) throws JsonProcessingException {
+    public static HashMap<String, Object> generateHashMapFromFileContent(String fileContent)
+            throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        HashMap<String, Object> fileContentAsHashMap
-                = (HashMap<String, Object>) objectMapper.readValue(fileContent, new TypeReference<Map<String, Object>>() {
-        });
-        return fileContentAsHashMap;
+        Map<String, Object> fileContentAsHashMap
+                = objectMapper.readValue(fileContent, new TypeReference<Map<String, Object>>() { });
+        return (HashMap<String, Object>) fileContentAsHashMap;
     }
 
     public static SortedMap<String, String> generateKeyStatusHashMap(HashMap<String, Object> firstFile,
@@ -37,20 +40,20 @@ public class Differ{
         var secondMapEntrys = secondFile.entrySet();
         SortedMap<String, String> mapOfKeysStatus = new TreeMap<>();
         for (var secondFileEntry : secondMapEntrys) {
-            if (firstFile.containsKey(secondFileEntry.getKey()) //key and value in both maps are equal - means just show it in result map
+            if (firstFile.containsKey(secondFileEntry.getKey())
                     && firstFile.get(secondFileEntry.getKey()).equals(secondFileEntry.getValue())) {
                 mapOfKeysStatus.put(secondFileEntry.getKey(), KEYSTATUS[1]);
             }
-            if (!firstFile.containsKey(secondFileEntry.getKey())) { //key from second file absent in first file - means it was added
+            if (!firstFile.containsKey(secondFileEntry.getKey())) {
                 mapOfKeysStatus.put(secondFileEntry.getKey(), KEYSTATUS[0]);
             }
-            if (firstFile.containsKey(secondFileEntry.getKey()) //key is present in both files but values are different - means it was edited
+            if (firstFile.containsKey(secondFileEntry.getKey())
                     && !firstFile.get(secondFileEntry.getKey()).equals(secondFileEntry.getValue())) {
                 mapOfKeysStatus.put(secondFileEntry.getKey(), KEYSTATUS[0]);
             }
         }
         for (var firstFileEntry : firstMapEntrys) {
-            if (!secondFile.containsKey(firstFileEntry.getKey())) { //key from first file is absent in second file - means it was deleted from first file
+            if (!secondFile.containsKey(firstFileEntry.getKey())) {
                 mapOfKeysStatus.put(firstFileEntry.getKey(), KEYSTATUS[0]);
             }
         }
@@ -66,10 +69,13 @@ public class Differ{
             }
             if (mapOfKeyStatus.get(key).equals(KEYSTATUS[0])) {
                 if (firstMap.containsKey(key)) {
-                    resultMessage.append("\n" + " ".repeat(2) + EDITSIGN[1] + " " + key + ": " + firstMap.get(key) + ", ");
+                    resultMessage.append("\n"
+                            + " ".repeat(2) + EDITSIGN[1]
+                            + " " + key + ": " + firstMap.get(key) + ", ");
                 }
                 if (secondMap.containsKey(key)) {
-                    resultMessage.append("\n" + " ".repeat(2) + EDITSIGN[0] + " " + key + ": " + secondMap.get(key) + ", ");
+                    resultMessage.append("\n" + " ".repeat(2) + EDITSIGN[0]
+                            + " " + key + ": " + secondMap.get(key) + ", ");
                 }
             }
         }
