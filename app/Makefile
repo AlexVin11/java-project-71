@@ -23,9 +23,11 @@ run-dist:
 run:
 	./gradlew run
 
+.PHONY: test
 test:
 	./gradlew test
 
+.PHONY: report
 report:
 	./gradlew jacocoTestReport
 
@@ -39,4 +41,3 @@ check-deps:
 build-run: build run
 
 .PHONY: build
-.PHONY: test
