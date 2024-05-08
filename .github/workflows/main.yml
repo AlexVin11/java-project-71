@@ -12,16 +12,15 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
-          java-version: '20'
+          java-version: '21'
           distribution: 'temurin'
       - uses: gradle/gradle-build-action@v3
         with:
-          gradle-version: 8.5
-          arguments: build
-          build-root-directory: app
-      - run: cd app
-      - run: ./gradlew checkstyleMain
-      - run: ./gradlew test
+          gradle-version: 8.7
+      - name: gradlew Checkstyle and Test commands
+        run: |
+          ./gradlew checkstyleMain
+          ./gradlew test
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v5.0.0
         env:
