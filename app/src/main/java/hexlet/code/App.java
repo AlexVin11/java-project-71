@@ -6,7 +6,6 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
 import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.concurrent.Callable;
 
 @Command(name = "gendiff",
