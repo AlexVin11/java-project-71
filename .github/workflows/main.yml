@@ -18,7 +18,6 @@ jobs:
         with:
           gradle-version: 8.7
           build-root-directory: app
-      - name: run checkstyleMain and Test
       - run: cd app
       - run: ./gradlew checkstyleMain
       - run: ./gradlew test
