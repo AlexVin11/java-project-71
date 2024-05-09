@@ -41,10 +41,7 @@ application {
 
 tasks.test {
     useJUnitPlatform()
-}
-
-tasks.test {
-    useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
     // https://technology.lastminute.com/junit5-kotlin-and-gradle-dsl/
     testLogging {
         exceptionFormat = TestExceptionFormat.FULL
