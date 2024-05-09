@@ -1,39 +1,28 @@
 # Makefile
 
-setup:
-	./gradlew wrapper --gradle-version 8.5
-
-clean:
-	./gradlew clean
-
-build:
-	./gradlew clean build
+.DEFAULT_GOAL := build-run
 
 install:
-	./gradlew clean install
+	make -C app install
 
 run-dist:
-	# Очистка от результатов предыдущей сборки
-	./gradlew clean
-	# Создание jar исполняемого файла
-	./gradlew installDist
-	# Запуск исполняемого файла
-	./build/install/app/bin/app
+	make -C app run-dist
+
+build:
+	make -C app build
 
 run:
-	./gradlew run
+	make -C app run
 
 test:
-	./gradlew test
+	make -C app test
 
 report:
-	./gradlew jacocoTestReport
+	make -C app report
 
 lint:
-	./gradlew checkstyleMain
-
-check-deps:
-	./gradlew dependencyUpdates -Drevision=release
-
+	make -C app lint
 
 build-run: build run
+
+.PHONY: build
