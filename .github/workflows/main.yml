@@ -21,6 +21,7 @@ jobs:
           build-root-directory: app
       - name: gradlew Build, Checkstyle and Test commands
         run: |
+          make install
           cd app
           make lint
           make test
