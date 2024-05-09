@@ -14,6 +14,8 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
+      - name: Install make
+        run: make install
       - uses: gradle/gradle-build-action@v3
         with:
           gradle-version: 8.7
@@ -21,7 +23,8 @@ jobs:
           build-root-directory: app
       - name: gradlew Build, Checkstyle and Test commands
         run: |
-          make -C app lint
+          cd app
+          make lint
           make test
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v5.0.0
@@ -29,5 +32,5 @@ jobs:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
           JACOCO_SOURCE_PATH: app/src/main/java
         with:
-           coverageCommand: make -C report
+           coverageCommand: make -C app report
            coverageLocations: $GITHUB_WORKSPACE/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
