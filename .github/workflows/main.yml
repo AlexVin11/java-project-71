@@ -21,9 +21,8 @@ jobs:
           build-root-directory: app
       - name: gradlew Build, Checkstyle and Test commands
         run: |
-          cd app
-          ./gradlew checkstyleMain
-          ./gradlew test
+          make lint
+          make test
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v5.0.0
         env:
