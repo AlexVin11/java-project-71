@@ -22,13 +22,13 @@ jobs:
       - name: gradlew Build, Checkstyle and Test commands
         run: |
           cd app
-          ./gradlew checkstyleMain
-          ./gradlew test
+          make lint
+          make test
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v5.0.0
         env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
           JACOCO_SOURCE_PATH: app/src/main/java
         with:
-           coverageCommand: make report
+           coverageCommand: make -C report
            coverageLocations: $GITHUB_WORKSPACE/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
