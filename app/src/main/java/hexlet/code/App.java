@@ -5,7 +5,6 @@ import picocli.CommandLine.Option;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
-import java.nio.file.Path;
 import java.util.concurrent.Callable;
 
 @Command(name = "gendiff",
@@ -30,14 +29,7 @@ public class App implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        Path pathToFirstFile = Differ.generatePath(firstFileName);
-        Path pathToSecondFile = Differ.generatePath(secondFileName);
-        String firstFileContent = Differ.readFileContent(pathToFirstFile);
-        String secondFileContent = Differ.readFileContent(pathToSecondFile);
-        var firstFileMap = Differ.generateHashMapFromFileContent(firstFileContent);
-        var secondFileMap = Differ.generateHashMapFromFileContent(secondFileContent);
-        var mapOfKeyStatus = Differ.generateKeyStatusHashMap(firstFileMap, secondFileMap);
-        String resultOfDiff = Differ.generate(mapOfKeyStatus, firstFileMap, secondFileMap);
+        String resultOfDiff = Differ.generate(firstFileName, secondFileName);
         System.out.println(resultOfDiff);
         return 0;
     }
