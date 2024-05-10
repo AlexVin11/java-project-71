@@ -10,10 +10,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
 
-    static String CORRECTRESULTOFFILE1ANDFILE2COMPARE;
+    static String CORRECTRESULTOFFILECOMPARE;
     static {
         try {
-            CORRECTRESULTOFFILE1ANDFILE2COMPARE = Files.readString(Path.of("test/resources/result.json"));
+            CORRECTRESULTOFFILECOMPARE = Files.readString(Path.of("test/resources/result.json"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -21,7 +21,7 @@ public class DifferTest {
 
     @Test
     public void testGenerate() throws IOException {
-        assertEquals(CORRECTRESULTOFFILE1ANDFILE2COMPARE,
+        assertEquals(CORRECTRESULTOFFILECOMPARE,
                 Differ.generate("test/resources/file1.json", "test/resources/file2.json"));
     }
 }
