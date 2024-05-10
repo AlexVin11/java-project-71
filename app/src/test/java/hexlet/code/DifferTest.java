@@ -13,7 +13,7 @@ public class DifferTest {
     static String CORRECTRESULTOFFILECOMPARE;
     static {
         try {
-            CORRECTRESULTOFFILECOMPARE = Files.readString(Path.of("test/resources/result.json"));
+            CORRECTRESULTOFFILECOMPARE = Files.readString(Path.of("java-project-71/app/src/test/resources/result.json"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
