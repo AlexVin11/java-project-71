@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
 
-    static Path pathToResultFile = Path.of("src/test/resources/result.json").toAbsolutePath().normalize();
+    static Path pathToResultFile = Path.of("src/test/resources/result.txt").toAbsolutePath().normalize();
     static String resultFileContent;
 
     static {

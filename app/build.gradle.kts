@@ -4,7 +4,6 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 plugins {
     application
     checkstyle
-    java
     jacoco
     id("io.freefair.lombok") version "8.6"
     id("se.patrikerdes.use-latest-versions") version "0.2.18" //don't understand do I need this
