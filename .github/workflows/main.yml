@@ -19,10 +19,10 @@ jobs:
           gradle-version: 8.7
           arguments: build
           build-root-directory: app
-      - name: gradlew Build, Checkstyle and Test commands
-        run: |
-          make lint
-          make test
+      - name: Run Checkstyle
+        run: make lint
+      - name: Run tests
+        run: make test
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v5.0.0
         env:
