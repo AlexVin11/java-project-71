@@ -6,14 +6,17 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import static java.nio.file.Files.readString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
 
-    static String CORRECTRESULTOFFILECOMPARE;
+    static Path pathToResultFile = Path.of("src/test/resources/result.json").toAbsolutePath().normalize();
+    static String resultFileContent;
+
     static {
         try {
-            CORRECTRESULTOFFILECOMPARE = Files.readString(Path.of("java-project-71/app/src/test/resources/result.json"));
+            resultFileContent = readString(pathToResultFile);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -21,7 +24,7 @@ public class DifferTest {
 
     @Test
     public void testGenerate() throws IOException {
-        assertEquals(CORRECTRESULTOFFILECOMPARE,
-                Differ.generate("test/resources/file1.json", "test/resources/file2.json"));
+        assertEquals(resultFileContent,
+                Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.json"));
     }
 }
