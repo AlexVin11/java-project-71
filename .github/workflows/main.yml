@@ -17,7 +17,7 @@ jobs:
       - uses: gradle/gradle-build-action@v3
         with:
           gradle-version: 8.7
-          arguments: build -x tests
+          arguments: build -x test
           build-root-directory: app
       - name: Run Checkstyle
         run: make lint
