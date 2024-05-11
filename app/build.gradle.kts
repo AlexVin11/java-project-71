@@ -4,6 +4,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 plugins {
     application
     checkstyle
+    java
     jacoco
     id("io.freefair.lombok") version "8.6"
     id("se.patrikerdes.use-latest-versions") version "0.2.18" //don't understand do I need this
@@ -40,6 +41,7 @@ application {
 
 tasks.test {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport)
     // https://technology.lastminute.com/junit5-kotlin-and-gradle-dsl/
     testLogging {
         exceptionFormat = TestExceptionFormat.FULL
@@ -50,6 +52,6 @@ tasks.test {
     }
 }
 
-tasks.jacocoTestReport {
+/*tasks.jacocoTestReport {
     reports { xml.required.set(true) }
-}
+}*/
