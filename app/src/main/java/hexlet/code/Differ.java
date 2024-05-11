@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedMap;
@@ -17,14 +16,6 @@ public class Differ {
 
     static final String[] KEYSTATUS = {"key edited", "key not edited"};
     static final Character[] EDITSIGN = {'+', '-'};
-
-    public static Path generatePath(String path) {
-        return Paths.get(path).toAbsolutePath().normalize();
-    }
-
-    public static String readFileContent(Path path) throws IOException {
-        return Files.readString(path);
-    }
 
     public static HashMap<String, Object> generateHashMapFromFileContent(String fileContent)
             throws JsonProcessingException {
@@ -60,22 +51,28 @@ public class Differ {
         return mapOfKeysStatus;
     }
 
-    public static String generate(SortedMap<String, String> mapOfKeyStatus,
-                                  HashMap<String, Object> firstMap, HashMap<String, Object> secondMap) {
+    public static String generate(String firstFile, String secondFile) throws IOException {
+        Path firstPath = Path.of(firstFile).toAbsolutePath().normalize();
+        Path secondPath = Path.of(secondFile).toAbsolutePath().normalize();
+        String firstFileContent = Files.readString(firstPath);
+        String secondFileContent  = Files.readString(secondPath);
+        HashMap<String, Object> firstFileAsHashMap = generateHashMapFromFileContent(firstFileContent);
+        HashMap<String, Object> secondFileAsHashMap = generateHashMapFromFileContent(secondFileContent);
+        SortedMap<String, String> differenceMap = generateKeyStatusHashMap(firstFileAsHashMap, secondFileAsHashMap);
         StringBuilder resultMessage = new StringBuilder("{");
-        for (String key : mapOfKeyStatus.keySet()) {
-            if (mapOfKeyStatus.get(key).equals(KEYSTATUS[1])) {
-                resultMessage.append("\n" + " ".repeat(4) + key + ": " + firstMap.get(key) + ", ");
+        for (String key : differenceMap.keySet()) {
+            if (differenceMap.get(key).equals(KEYSTATUS[1])) {
+                resultMessage.append("\n" + " ".repeat(4) + key + ": " + firstFileAsHashMap.get(key) + ", ");
             }
-            if (mapOfKeyStatus.get(key).equals(KEYSTATUS[0])) {
-                if (firstMap.containsKey(key)) {
+            if (differenceMap.get(key).equals(KEYSTATUS[0])) {
+                if (firstFileAsHashMap.containsKey(key)) {
                     resultMessage.append("\n"
                             + " ".repeat(2) + EDITSIGN[1]
-                            + " " + key + ": " + firstMap.get(key) + ", ");
+                            + " " + key + ": " + firstFileAsHashMap.get(key) + ", ");
                 }
-                if (secondMap.containsKey(key)) {
+                if (secondFileAsHashMap.containsKey(key)) {
                     resultMessage.append("\n" + " ".repeat(2) + EDITSIGN[0]
-                            + " " + key + ": " + secondMap.get(key) + ", ");
+                            + " " + key + ": " + secondFileAsHashMap.get(key) + ", ");
                 }
             }
         }
