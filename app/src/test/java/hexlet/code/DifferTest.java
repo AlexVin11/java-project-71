@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
 
-    static final String CORRECT_RESULT_OF_COMPARING_1 = "{\\n"
+    static final String CORRECT_RESULT_OF_COMPARING_1 = "{\n"
             + "  - follow: false,\n"
             + "    host: hexlet.io,\n"
             + "  - proxy: 123.234.53.22,\n"
