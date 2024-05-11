@@ -19,7 +19,7 @@ public class DifferTest {
 
     @Test
     public void testGenerate() throws IOException {
-        assertEquals(CORRECT_RESULT_OF_COMPARING_1,
+        assertEquals(Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.json"),
                 Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.json"));
     }
 }
