@@ -4,7 +4,6 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 plugins {
     application
     checkstyle
-    java
     jacoco
     id("io.freefair.lombok") version "8.6"
     id("se.patrikerdes.use-latest-versions") version "0.2.18" //don't understand do I need this
@@ -17,6 +16,10 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+}
+
+jacoco {
+    toolVersion = "0.8.11"
 }
 
 dependencies {
@@ -52,6 +55,7 @@ tasks.test {
     }
 }
 
-/*tasks.jacocoTestReport {
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
     reports { xml.required.set(true) }
-}*/
+}
