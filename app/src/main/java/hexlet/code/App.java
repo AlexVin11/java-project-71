@@ -31,6 +31,7 @@ public class App implements Callable<Integer> {
     public Integer call() throws Exception {
         String resultOfDiff = Differ.generate(firstFileName, secondFileName);
         System.out.println(resultOfDiff);
+        //string to trigger
         return 0;
     }
 }
