@@ -6,9 +6,6 @@ plugins {
     checkstyle
     jacoco
     id("io.freefair.lombok") version "8.6"
-    id("se.patrikerdes.use-latest-versions") version "0.2.18" //don't understand do I need this
-    id("com.github.ben-manes.versions") version "0.41.0" //don't understand do I need this
-    id("com.github.johnrengelman.shadow") version "8.1.1" //don't understand do I need this
 }
 
 group = "hexlet.code"
@@ -32,6 +29,8 @@ dependencies {
     annotationProcessor("info.picocli:picocli-codegen:4.7.5")
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
     implementation("com.fasterxml.jackson.core:jackson-databind:2.17.0")
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.17.1")
 }
 
 tasks.withType<JavaCompile>(){
