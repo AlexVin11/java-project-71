@@ -21,22 +21,13 @@ public class DifferTest {
         }
     }
 
-    static Path pathToResultForYamlFiles = Path.of("src/test/resources/resultyaml.txt").toAbsolutePath().normalize();
-    static String yamlCompareFileContent;
-
-    static {
-        try {
-            yamlCompareFileContent = readString(pathToResultForYamlFiles);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     @Test
-    public void testGenerate() throws IOException {
+    public void testGenerate() throws Exception {
         assertEquals(jsonCompareFileContent,
                 Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.json"));
-        assertEquals(yamlCompareFileContent,
+        assertEquals(jsonCompareFileContent,
                 Differ.generate("src/test/resources/file1.yaml", "src/test/resources/file2.yaml"));
+        assertEquals(jsonCompareFileContent,
+                Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.yaml"));
     }
 }
