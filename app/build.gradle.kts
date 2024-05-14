@@ -6,9 +6,6 @@ plugins {
     checkstyle
     jacoco
     id("io.freefair.lombok") version "8.6"
-    id("se.patrikerdes.use-latest-versions") version "0.2.18" //don't understand do I need this
-    id("com.github.ben-manes.versions") version "0.41.0" //don't understand do I need this
-    id("com.github.johnrengelman.shadow") version "8.1.1" //don't understand do I need this
 }
 
 group = "hexlet.code"
