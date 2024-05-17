@@ -14,7 +14,7 @@ public class App implements Callable<Integer> {
 
     static final String HOME = System.getProperty("user.home");
 
-    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]", paramLabel = "format")
+    @Option(names = {"-f", "--format"}, defaultValue = "stylish", description = "output format [default: stylish]", paramLabel = "format")
     String format;
     @Option(names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit.")
     boolean helpRequested = false;
@@ -29,7 +29,7 @@ public class App implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        String resultOfDiff = Differ.generate(firstFileName, secondFileName);
+        String resultOfDiff = Differ.generate(firstFileName, secondFileName, format);
         System.out.println(resultOfDiff);
         return 0;
     }
