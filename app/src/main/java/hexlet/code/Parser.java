@@ -8,8 +8,7 @@ import java.util.Map;
 
 public class Parser {
 
-    public static Map<String, String> parser(String content) throws Exception {
-        Object obj = new Object();
+    public static Map<String, Object> parser(String content) throws Exception {
         if (content.startsWith("---")) {
             ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
             return mapper.readValue(content, new TypeReference<>() {
