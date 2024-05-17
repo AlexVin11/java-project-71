@@ -1,22 +1,23 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class Parser {
 
-    public static HashMap<String, Object> parser(String content) throws Exception {
-        HashMap<String, Object> contentAsMap = new HashMap<>();
+    public static Map<String, String> parser(String content) throws Exception {
+        Object obj = new Object();
         if (content.startsWith("---")) {
             ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-            contentAsMap = mapper.readValue(content, HashMap.class);
-            return contentAsMap;
+            return mapper.readValue(content, new TypeReference<>() {
+            });
         } else {
             ObjectMapper mapper = new ObjectMapper();
-            contentAsMap = mapper.readValue(content, HashMap.class);
-            return contentAsMap;
+            return mapper.readValue(content, new TypeReference<>() {
+            });
         }
     }
 }
