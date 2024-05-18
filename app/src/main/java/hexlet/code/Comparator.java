@@ -5,7 +5,6 @@ import java.util.Objects;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import static hexlet.code.Differ.EDIT_SIGN;
 import static hexlet.code.Differ.KEY_STATUS;
 
 public class Comparator {
