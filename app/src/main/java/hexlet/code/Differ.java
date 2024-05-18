@@ -27,21 +27,21 @@ public class Differ {
             StringBuilder resultMessage = new StringBuilder("{");
             for (String key : differenceMap.keySet()) {
                 if (differenceMap.get(key).equals(KEY_STATUS[1])) {
-                    resultMessage.append("\n" + " ".repeat(4) + key + ": " + firstFileAsHashMap.get(key) + ", ");
+                    resultMessage.append("\n" + " ".repeat(4) + key + ": " + firstFileAsHashMap.get(key));
                 }
                 if (differenceMap.get(key).equals(KEY_STATUS[0])) {
                     if (firstFileAsHashMap.containsKey(key)) {
                         resultMessage.append("\n"
                                 + " ".repeat(2) + EDIT_SIGN[1]
-                                + " " + key + ": " + firstFileAsHashMap.get(key) + ", ");
+                                + " " + key + ": " + firstFileAsHashMap.get(key));
                     }
                     if (secondFileAsHashMap.containsKey(key)) {
                         resultMessage.append("\n" + " ".repeat(2) + EDIT_SIGN[0]
-                                + " " + key + ": " + secondFileAsHashMap.get(key) + ", ");
+                                + " " + key + ": " + secondFileAsHashMap.get(key));
                     }
                 }
             }
-            resultMessage.delete(resultMessage.length() - 2, resultMessage.length()).append("\n" + "}");
+            resultMessage.append("\n" + "}");
             return resultMessage.toString();
         } else {
             return "plain was selected";
