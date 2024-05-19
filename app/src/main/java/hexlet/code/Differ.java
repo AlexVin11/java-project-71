@@ -21,7 +21,8 @@ public class Differ {
         String secondFileContent  = Files.readString(processedSecondPath);
         Map<String, Object> firstFileAsHashMap = Parser.parser(firstFileContent);
         Map<String, Object> secondFileAsHashMap = Parser.parser(secondFileContent);
-        SortedMap<String, String> differenceMap = Comparator.generateKeyStatusHashMap(firstFileAsHashMap, secondFileAsHashMap);
+        SortedMap<String, String> differenceMap = Comparator.generateKeyStatusHashMap(firstFileAsHashMap,
+                secondFileAsHashMap);
 
         if (format.equals("stylish")) {
             return Formatter.stylish(firstFileAsHashMap, secondFileAsHashMap, differenceMap);
