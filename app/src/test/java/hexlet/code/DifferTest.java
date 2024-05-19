@@ -43,5 +43,7 @@ public class DifferTest {
                 Differ.generate("src/test/resources/nestedfile1.json", "src/test/resources/nestedfile2.json"));
         assertEquals(compareNestedFileContent,
                 Differ.generate("src/test/resources/nestedfile1.yaml", "src/test/resources/nestedfile2.yaml"));
+        assertEquals(compareNestedFileContent,
+                Differ.generate("src/test/resources/nestedfile1.json", "src/test/resources/nestedfile2.yaml"));
     }
 }
