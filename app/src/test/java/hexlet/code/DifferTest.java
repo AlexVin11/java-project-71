@@ -20,12 +20,13 @@ public class DifferTest {
             throw new RuntimeException(e);
         }
     }
-    static Path pathToNestedResultJsonFile = Path.of("src/test/resources/nestedresult.txt").toAbsolutePath().normalize();
+    static Path pathToNestedResultJsonFile = Path.of("src/test/resources/nestedresult.txt")
+            .toAbsolutePath().normalize();
     static String compareNestedFileContent;
 
     static {
         try {
-            compareNestedFileContent =readString(pathToNestedResultJsonFile);
+            compareNestedFileContent = readString(pathToNestedResultJsonFile);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
