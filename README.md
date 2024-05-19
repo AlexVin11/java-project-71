@@ -6,7 +6,7 @@
 
 # Project overview
 Project contains a command line application (picocli based) for calculating difference in given 2 files.
-App consume two Strings (file names) and format option (-f, --format) which will determine the output format. If no format given output given - stylish is default output mode.
+App consume two Strings (file names) and format option (-f, --format) which will determine the output format. If no format option given to configure output - stylish is set by default.
 To see the help message call the app with -h option.
 
 # Terminal records
