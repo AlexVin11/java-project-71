@@ -24,25 +24,7 @@ public class Differ {
         SortedMap<String, String> differenceMap = Comparator.generateKeyStatusHashMap(firstFileAsHashMap, secondFileAsHashMap);
 
         if (format.equals("stylish")) {
-            StringBuilder resultMessage = new StringBuilder("{");
-            for (String key : differenceMap.keySet()) {
-                if (differenceMap.get(key).equals(KEY_STATUS[1])) {
-                    resultMessage.append("\n" + " ".repeat(4) + key + ": " + firstFileAsHashMap.get(key));
-                }
-                if (differenceMap.get(key).equals(KEY_STATUS[0])) {
-                    if (firstFileAsHashMap.containsKey(key)) {
-                        resultMessage.append("\n"
-                                + " ".repeat(2) + EDIT_SIGN[1]
-                                + " " + key + ": " + firstFileAsHashMap.get(key));
-                    }
-                    if (secondFileAsHashMap.containsKey(key)) {
-                        resultMessage.append("\n" + " ".repeat(2) + EDIT_SIGN[0]
-                                + " " + key + ": " + secondFileAsHashMap.get(key));
-                    }
-                }
-            }
-            resultMessage.append("\n" + "}");
-            return resultMessage.toString();
+            return Formatter.stylish(firstFileAsHashMap, secondFileAsHashMap, differenceMap);
         } else {
             return "plain was selected";
         }
