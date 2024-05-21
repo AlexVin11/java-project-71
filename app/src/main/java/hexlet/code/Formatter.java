@@ -8,7 +8,7 @@ import static hexlet.code.Differ.KEY_STATUS;
 
 public class Formatter {
 
-    public static String stylish(Map<String, Object> firstFileAsHashMap,
+    /*public static String generateStylishOutput(Map<String, Object> firstFileAsHashMap,
                                  Map<String, Object> secondFileAsHashMap, SortedMap<String, String> differenceMap) {
         StringBuilder resultMessage = new StringBuilder("{");
 
@@ -30,5 +30,5 @@ public class Formatter {
         }
         resultMessage.append("\n" + "}");
         return resultMessage.toString();
-    }
+    }*/
 }
