@@ -28,7 +28,7 @@ public class Differ {
                 secondFileAsHashMap);
 
         if (format.equals("stylish")) {
-            return Stylish.generateStylishOutputCopy(firstFileAsHashMap,
+            return Stylish.generateStylishOutput(firstFileAsHashMap,
                     secondFileAsHashMap, differenceMap);
         } else {
             return Plain.generatePlainOutput(firstFileAsHashMap, secondFileAsHashMap, differenceMap);

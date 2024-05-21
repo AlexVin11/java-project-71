@@ -8,9 +8,9 @@ import static hexlet.code.Differ.KEY_STATUS;
 
 public class Stylish {
 
-    public static String generateStylishOutputCopy(Map<String, Object> firstFileAsHashMap,
-                                                   Map<String, Object> secondFileAsHashMap,
-                                                   SortedMap<String, String> differenceMap) {
+    public static String generateStylishOutput(Map<String, Object> firstFileAsHashMap,
+                                               Map<String, Object> secondFileAsHashMap,
+                                               SortedMap<String, String> differenceMap) {
         StringBuilder resultMessage = new StringBuilder("{");
 
         for (String key : differenceMap.keySet()) {
