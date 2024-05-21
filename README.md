@@ -10,7 +10,7 @@ App consume two Strings (file names) and format option (-f, --format) which will
 To see the help message call the app with -h option.
 
 # Terminal records
-* Two flat json files comparing demo: [![asciinema](https://asciinema.org/a/v0W2srZIVgGDIXSw3sWnJ77ee.svg)](https://asciinema.org/a/v0W2srZIVgGDIXSw3sWnJ77ee)
-* Two flat yaml files comparing demo: [![asciinema](https://asciinema.org/a/PeHah2fLdjVOEN3N9edDQ2oRG.svg)](https://asciinema.org/a/PeHah2fLdjVOEN3N9edDQ2oRG)
-* Two nested json files comparing demo: [![asciinema](https://asciinema.org/a/w2I2WUlFCLAvcOYmHdNusqZib.svg)](https://asciinema.org/a/w2I2WUlFCLAvcOYmHdNusqZib)
-* Two nested json files comparing demo: [![asciinema](https://asciinema.org/a/GGF6GnC2YgfjYy4ZGphM1mw4o.svg)](https://asciinema.org/a/GGF6GnC2YgfjYy4ZGphM1mw4o)
+* Two flat json files comparing demo with default stylish output: [![asciinema](https://asciinema.org/a/v0W2srZIVgGDIXSw3sWnJ77ee.svg)](https://asciinema.org/a/v0W2srZIVgGDIXSw3sWnJ77ee)
+* Two flat yaml files comparing demo with default stylish output: [![asciinema](https://asciinema.org/a/PeHah2fLdjVOEN3N9edDQ2oRG.svg)](https://asciinema.org/a/PeHah2fLdjVOEN3N9edDQ2oRG)
+* Two nested files (json and yaml) comparing demo with default stylish output: [![asciinema](https://asciinema.org/a/w2I2WUlFCLAvcOYmHdNusqZib.svg)](https://asciinema.org/a/w2I2WUlFCLAvcOYmHdNusqZib)
+* Two nested files comparing demo with plain output option: [![asciinema](https://asciinema.org/a/GGF6GnC2YgfjYy4ZGphM1mw4o.svg)](https://asciinema.org/a/GGF6GnC2YgfjYy4ZGphM1mw4o)
