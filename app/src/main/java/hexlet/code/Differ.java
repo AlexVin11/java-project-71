@@ -1,7 +1,7 @@
 package hexlet.code;
 
 import hexlet.code.formatters.Plain;
-import hexlet.code.formatters.Stylishcopy;
+import hexlet.code.formatters.Stylish;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,7 +28,7 @@ public class Differ {
                 secondFileAsHashMap);
 
         if (format.equals("stylish")) {
-            return Stylishcopy.generateStylishOutputCopy(firstFileAsHashMap,
+            return Stylish.generateStylishOutputCopy(firstFileAsHashMap,
                     secondFileAsHashMap, differenceMap);
         } else {
             return Plain.generatePlainOutput(firstFileAsHashMap, secondFileAsHashMap, differenceMap);
