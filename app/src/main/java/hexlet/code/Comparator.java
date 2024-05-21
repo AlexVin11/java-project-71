@@ -21,7 +21,7 @@ public class Comparator {
                 mapOfKeysStatus.put(secondFileEntry.getKey(), KEY_STATUS[1]);
             }
             if (!firstFile.containsKey(secondFileEntry.getKey())) {
-                mapOfKeysStatus.put(secondFileEntry.getKey(), KEY_STATUS[0]);
+                mapOfKeysStatus.put(secondFileEntry.getKey(), KEY_STATUS[3]);
             }
             if (firstFile.containsKey(secondFileEntry.getKey())
                     && !Objects.equals(firstFile.get(secondFileEntry.getKey()), secondFileEntry.getValue())) {
@@ -30,7 +30,7 @@ public class Comparator {
         }
         for (var firstFileEntry : firstMapEntrys) {
             if (!secondFile.containsKey(firstFileEntry.getKey())) {
-                mapOfKeysStatus.put(firstFileEntry.getKey(), KEY_STATUS[0]);
+                mapOfKeysStatus.put(firstFileEntry.getKey(), KEY_STATUS[2]);
             }
         }
         return mapOfKeysStatus;
