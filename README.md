@@ -13,3 +13,4 @@ To see the help message call the app with -h option.
 * Two flat json files comparing demo: [![asciinema](https://asciinema.org/a/v0W2srZIVgGDIXSw3sWnJ77ee.svg)](https://asciinema.org/a/v0W2srZIVgGDIXSw3sWnJ77ee)
 * Two flat yaml files comparing demo: [![asciinema](https://asciinema.org/a/PeHah2fLdjVOEN3N9edDQ2oRG.svg)](https://asciinema.org/a/PeHah2fLdjVOEN3N9edDQ2oRG)
 * Two nested json files comparing demo: [![asciinema](https://asciinema.org/a/w2I2WUlFCLAvcOYmHdNusqZib.svg)](https://asciinema.org/a/w2I2WUlFCLAvcOYmHdNusqZib)
+* Two nested json files comparing demo: [![asciinema](https://asciinema.org/a/GGF6GnC2YgfjYy4ZGphM1mw4o.svg)](https://asciinema.org/a/GGF6GnC2YgfjYy4ZGphM1mw4o)
