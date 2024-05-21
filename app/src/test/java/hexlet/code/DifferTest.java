@@ -10,23 +10,35 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
 
-    static Path pathToResultForJsonFiles = Path.of("src/test/resources/resultjson.txt").toAbsolutePath().normalize();
-    static String jsonCompareFileContent;
+    static Path pathToStylishResultForFlatFiles = Path.of("src/test/resources/flatstylishresult.txt")
+            .toAbsolutePath().normalize();
+    static String stylishCompareFlatFileContent;
+    static Path pathToStylishNestedResultFile = Path.of("src/test/resources/nestedstylishresult.txt")
+            .toAbsolutePath().normalize();
+    static String stylishCompareNestedFileContent;
+    static Path pathToPlainNestedResultFile = Path.of("src/test/resources/nestedplainresult.txt")
+            .toAbsolutePath().normalize();
+    static String plainCompareNestedFileContent;
 
     static {
         try {
-            jsonCompareFileContent = readString(pathToResultForJsonFiles);
+            stylishCompareFlatFileContent = readString(pathToStylishResultForFlatFiles);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    static Path pathToNestedResultJsonFile = Path.of("src/test/resources/nestedresult.txt")
-            .toAbsolutePath().normalize();
-    static String compareNestedFileContent;
 
     static {
         try {
-            compareNestedFileContent = readString(pathToNestedResultJsonFile);
+            stylishCompareNestedFileContent = readString(pathToStylishNestedResultFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    static {
+        try {
+            plainCompareNestedFileContent = readString(pathToPlainNestedResultFile);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -34,17 +46,20 @@ public class DifferTest {
 
     @Test
     public void testGenerate() throws Exception {
-        assertEquals(jsonCompareFileContent,
+        assertEquals(stylishCompareFlatFileContent,
                 Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.json"));
-        assertEquals(jsonCompareFileContent,
+        assertEquals(stylishCompareFlatFileContent,
                 Differ.generate("src/test/resources/file1.yaml", "src/test/resources/file2.yaml"));
-        assertEquals(jsonCompareFileContent,
+        assertEquals(stylishCompareFlatFileContent,
                 Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.yaml"));
-        assertEquals(compareNestedFileContent,
+        assertEquals(stylishCompareNestedFileContent,
                 Differ.generate("src/test/resources/nestedfile1.json", "src/test/resources/nestedfile2.json"));
-        assertEquals(compareNestedFileContent,
+        assertEquals(stylishCompareNestedFileContent,
                 Differ.generate("src/test/resources/nestedfile1.yaml", "src/test/resources/nestedfile2.yaml"));
-        assertEquals(compareNestedFileContent,
+        assertEquals(stylishCompareNestedFileContent,
                 Differ.generate("src/test/resources/nestedfile1.json", "src/test/resources/nestedfile2.yaml"));
+        assertEquals(plainCompareNestedFileContent,
+                Differ.generate("src/test/resources/nestedfile1.json",
+                        "src/test/resources/nestedfile2.yaml", "plain"));
     }
 }

@@ -15,7 +15,7 @@ public class App implements Callable<Integer> {
     static final String HOME = System.getProperty("user.home");
 
     @Option(names = {"-f", "--format"}, defaultValue = "stylish",
-            description = "output format [default: stylish]", paramLabel = "format")
+            description = "output format [default: generateStylishOutput]", paramLabel = "format")
     String format;
     @Option(names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit.")
     boolean helpRequested = false;
