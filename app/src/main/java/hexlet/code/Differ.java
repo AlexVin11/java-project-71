@@ -7,9 +7,6 @@ import java.util.SortedMap;
 
 public class Differ {
 
-    public static final String[] KEY_STATUS = {"key edited", "key not edited", "key removed", "key added"};
-    public static final Character[] EDIT_SIGN = {'+', '-'};
-
     public static String generate(String firstFile, String secondFile) throws Exception {
         return generate(firstFile, secondFile, "stylish");
     }
