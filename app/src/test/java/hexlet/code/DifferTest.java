@@ -19,6 +19,9 @@ public class DifferTest {
     static Path pathToPlainNestedResultFile = Path.of("src/test/resources/nestedplainresult.txt")
             .toAbsolutePath().normalize();
     static String plainCompareNestedFileContent;
+    static Path pathToJsonNestedResultFile = Path.of("src/test/resources/jsonresult.txt")
+            .toAbsolutePath().normalize();
+    static String compareNestedFileContentAsJson;
 
     static {
         try {
@@ -44,6 +47,14 @@ public class DifferTest {
         }
     }
 
+    static {
+        try {
+            compareNestedFileContentAsJson = readString(pathToJsonNestedResultFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Test
     public void testGenerate() throws Exception {
         assertEquals(stylishCompareFlatFileContent,
@@ -61,5 +72,8 @@ public class DifferTest {
         assertEquals(plainCompareNestedFileContent,
                 Differ.generate("src/test/resources/nestedfile1.json",
                         "src/test/resources/nestedfile2.yaml", "plain"));
+        assertEquals(compareNestedFileContentAsJson,
+                Differ.generate("src/test/resources/nestedfile1.json",
+                        "src/test/resources/nestedfile2.yaml", "json"));
     }
 }
