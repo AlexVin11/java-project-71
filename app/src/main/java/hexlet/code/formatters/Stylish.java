@@ -3,13 +3,13 @@ package hexlet.code.formatters;
 import java.util.Map;
 import java.util.SortedMap;
 
-import static hexlet.code.Differ.EDIT_SIGN;
-import static hexlet.code.Differ.KEY_STATUS;
+import static hexlet.code.Comparator.KEY_STATUS;
 
 public class Stylish {
 
     public static final int EDITED_LINE_SPACE_COUNT = 2;
     public static final int NOT_EDITED_LINE_SPACE_COUNT = 4;
+    public static final Character[] EDIT_SIGN = {'+', '-'};
 
     public static String generateStylishOutput(Map<String, Object> firstFileAsHashMap,
                                                Map<String, Object> secondFileAsHashMap,
