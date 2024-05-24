@@ -14,3 +14,4 @@ To see the help message call the app with -h option.
 * Two flat yaml files comparing demo with default stylish output: [![asciinema](https://asciinema.org/a/PeHah2fLdjVOEN3N9edDQ2oRG.svg)](https://asciinema.org/a/PeHah2fLdjVOEN3N9edDQ2oRG)
 * Two nested files (json and yaml) comparing demo with default stylish output: [![asciinema](https://asciinema.org/a/w2I2WUlFCLAvcOYmHdNusqZib.svg)](https://asciinema.org/a/w2I2WUlFCLAvcOYmHdNusqZib)
 * Two nested files comparing demo with plain output option: [![asciinema](https://asciinema.org/a/GGF6GnC2YgfjYy4ZGphM1mw4o.svg)](https://asciinema.org/a/GGF6GnC2YgfjYy4ZGphM1mw4o)
+* Two nested files comparing demo with json output option: [![asciinema](https://asciinema.org/a/rKYNsO0ndkOlaCMqK3xUGzXnT.svg)](https://asciinema.org/a/rKYNsO0ndkOlaCMqK3xUGzXnT)
