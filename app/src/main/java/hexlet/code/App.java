@@ -12,8 +12,6 @@ import java.util.concurrent.Callable;
 
 public class App implements Callable<Integer> {
 
-    static final String HOME = System.getProperty("user.home");
-
     @Option(names = {"-f", "--format"}, defaultValue = "stylish",
             description = "output format [default: generateStylishOutput]", paramLabel = "format")
     String format;

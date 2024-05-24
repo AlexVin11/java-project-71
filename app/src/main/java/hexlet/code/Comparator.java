@@ -5,9 +5,10 @@ import java.util.Objects;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import static hexlet.code.Differ.KEY_STATUS;
 
 public class Comparator {
+
+    public static final String[] KEY_STATUS = {"key edited", "key not edited", "key removed", "key added"};
 
     public static SortedMap<String, String> generateKeyStatusHashMap(Map<String, Object> firstFile,
                                                                      Map<String, Object> secondFile) {

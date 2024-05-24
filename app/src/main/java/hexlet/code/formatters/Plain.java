@@ -5,7 +5,8 @@ import hexlet.code.Parser;
 import java.util.Map;
 import java.util.SortedMap;
 
-import static hexlet.code.Differ.KEY_STATUS;
+import static hexlet.code.Comparator.KEY_STATUS;
+
 
 public class Plain {
 
