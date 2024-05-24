@@ -1,8 +1,5 @@
 package hexlet.code;
 
-import hexlet.code.formatters.Plain;
-import hexlet.code.formatters.Stylish;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
@@ -26,12 +23,6 @@ public class Differ {
         Map<String, Object> secondFileAsHashMap = Parser.parseFileContentToMap(secondFileContent);
         SortedMap<String, String> differenceMap = Comparator.generateKeyStatusHashMap(firstFileAsHashMap,
                 secondFileAsHashMap);
-
-        if (format.equals("stylish")) {
-            return Stylish.generateStylishOutput(firstFileAsHashMap,
-                    secondFileAsHashMap, differenceMap);
-        } else {
-            return Plain.generatePlainOutput(firstFileAsHashMap, secondFileAsHashMap, differenceMap);
-        }
+        return Formatter.generateFormatedMessage(firstFileAsHashMap, secondFileAsHashMap, differenceMap, format);
     }
 }
