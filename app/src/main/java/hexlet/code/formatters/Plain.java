@@ -5,7 +5,7 @@ import hexlet.code.Parser;
 import java.util.Map;
 import java.util.SortedMap;
 
-import static hexlet.code.Comparator.KEY_STATUS;
+import static hexlet.code.Comparator.*;
 
 
 public class Plain {
@@ -18,7 +18,7 @@ public class Plain {
         StringBuilder resultMessage = new StringBuilder();
 
         for (String key : differenceMap.keySet()) {
-            if (differenceMap.get(key).equals(KEY_STATUS[0])) {
+            if (differenceMap.get(key).equals(EDITED)) {
                 resultMessage.append("Property '" + key + "' was updated. From ");
                 String oldValue = firstFileAsStringsMap.get(key);
                 String newValue = secondFileAsStringsMap.get(key);
@@ -41,10 +41,10 @@ public class Plain {
                     }
                 }
             }
-            if (differenceMap.get(key).equals(KEY_STATUS[2])) {
+            if (differenceMap.get(key).equals(REMOVED)) {
                 resultMessage.append("Property '" + key + "' was removed" + "\n");
             }
-            if (differenceMap.get(key).equals(KEY_STATUS[3])) {
+            if (differenceMap.get(key).equals(ADDED)) {
                 resultMessage.append("Property '" + key + "' was added with value: ");
                 String newValue = secondFileAsStringsMap.get(key);
                 if (newValue.contains("{") || newValue.contains("[")) {
