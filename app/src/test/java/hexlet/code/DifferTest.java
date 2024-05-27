@@ -22,6 +22,9 @@ public class DifferTest {
     static Path pathToJsonNestedResultFile = Path.of("src/test/resources/jsonresult.txt")
             .toAbsolutePath().normalize();
     static String compareNestedFileContentAsJson;
+    static Path pathToPlainResultForFlatFiles = Path.of("src/test/resources/flatplainresult.txt")
+            .toAbsolutePath().normalize();
+    static String plainCompareFlatFileContent;
 
     static {
         try {
@@ -55,6 +58,14 @@ public class DifferTest {
         }
     }
 
+    static {
+        try {
+            plainCompareFlatFileContent = readString(pathToPlainResultForFlatFiles);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Test
     public void testGenerate() throws Exception {
         assertEquals(stylishCompareFlatFileContent,
@@ -63,12 +74,16 @@ public class DifferTest {
                 Differ.generate("src/test/resources/file1.yaml", "src/test/resources/file2.yaml"));
         assertEquals(stylishCompareFlatFileContent,
                 Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.yaml"));
+        assertEquals(stylishCompareFlatFileContent,
+                Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.json", "stylish"));
+        assertEquals(plainCompareFlatFileContent,
+                Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.json", "plain"));
         assertEquals(stylishCompareNestedFileContent,
                 Differ.generate("src/test/resources/nestedfile1.json", "src/test/resources/nestedfile2.json"));
         assertEquals(stylishCompareNestedFileContent,
                 Differ.generate("src/test/resources/nestedfile1.yaml", "src/test/resources/nestedfile2.yaml"));
         assertEquals(stylishCompareNestedFileContent,
-                Differ.generate("src/test/resources/nestedfile1.json", "src/test/resources/nestedfile2.yaml"));
+                Differ.generate("src/test/resources/nestedfile1.json", "src/test/resources/nestedfile2.yaml", "stylish"));
         assertEquals(plainCompareNestedFileContent,
                 Differ.generate("src/test/resources/nestedfile1.json",
                         "src/test/resources/nestedfile2.yaml", "plain"));
