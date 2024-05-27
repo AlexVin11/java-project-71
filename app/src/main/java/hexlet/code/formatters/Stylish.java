@@ -3,7 +3,7 @@ package hexlet.code.formatters;
 import java.util.Map;
 import java.util.SortedMap;
 
-import static hexlet.code.Comparator.KEY_STATUS;
+import static hexlet.code.Comparator.*;
 
 public class Stylish {
 
@@ -17,11 +17,11 @@ public class Stylish {
         StringBuilder resultMessage = new StringBuilder("{");
 
         for (String key : differenceMap.keySet()) {
-            if (differenceMap.get(key).equals(KEY_STATUS[1])) {
+            if (differenceMap.get(key).equals(NOT_EDITED)) {
                 resultMessage.append("\n"
                         + " ".repeat(NOT_EDITED_LINE_SPACE_COUNT) + key + ": " + firstFileAsHashMap.get(key));
             }
-            if (differenceMap.get(key).equals(KEY_STATUS[0])) {
+            if (differenceMap.get(key).equals(EDITED)) {
                 resultMessage.append("\n"
                         + " ".repeat(EDITED_LINE_SPACE_COUNT) + EDIT_SIGN[1]
                         + " " + key + ": " + firstFileAsHashMap.get(key));
@@ -29,12 +29,12 @@ public class Stylish {
                         + " ".repeat(EDITED_LINE_SPACE_COUNT) + EDIT_SIGN[0]
                         + " " + key + ": " + secondFileAsHashMap.get(key));
             }
-            if (differenceMap.get(key).equals(KEY_STATUS[2])) {
+            if (differenceMap.get(key).equals(REMOVED)) {
                 resultMessage.append("\n"
                         + " ".repeat(EDITED_LINE_SPACE_COUNT) + EDIT_SIGN[1]
                         + " " + key + ": " + firstFileAsHashMap.get(key));
             }
-            if (differenceMap.get(key).equals(KEY_STATUS[3])) {
+            if (differenceMap.get(key).equals(ADDED)) {
                 resultMessage.append("\n" + " ".repeat(EDITED_LINE_SPACE_COUNT) + EDIT_SIGN[0]
                         + " " + key + ": " + secondFileAsHashMap.get(key));
             }
