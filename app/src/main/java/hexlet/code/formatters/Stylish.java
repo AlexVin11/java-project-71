@@ -9,7 +9,8 @@ public class Stylish {
 
     public static final int EDITED_LINE_SPACE_COUNT = 2;
     public static final int NOT_EDITED_LINE_SPACE_COUNT = 4;
-    public static final Character[] EDIT_SIGN = {'+', '-'};
+    public static final char PLUS = '+';
+    public static final char MINUS = '-';
 
     public static String generateStylishOutput(Map<String, Object> firstFileAsHashMap,
                                                Map<String, Object> secondFileAsHashMap,
@@ -23,19 +24,19 @@ public class Stylish {
             }
             if (differenceMap.get(key).equals(EDITED)) {
                 resultMessage.append("\n"
-                        + " ".repeat(EDITED_LINE_SPACE_COUNT) + EDIT_SIGN[1]
+                        + " ".repeat(EDITED_LINE_SPACE_COUNT) + MINUS
                         + " " + key + ": " + firstFileAsHashMap.get(key));
                 resultMessage.append("\n"
-                        + " ".repeat(EDITED_LINE_SPACE_COUNT) + EDIT_SIGN[0]
+                        + " ".repeat(EDITED_LINE_SPACE_COUNT) + PLUS
                         + " " + key + ": " + secondFileAsHashMap.get(key));
             }
             if (differenceMap.get(key).equals(REMOVED)) {
                 resultMessage.append("\n"
-                        + " ".repeat(EDITED_LINE_SPACE_COUNT) + EDIT_SIGN[1]
+                        + " ".repeat(EDITED_LINE_SPACE_COUNT) + MINUS
                         + " " + key + ": " + firstFileAsHashMap.get(key));
             }
             if (differenceMap.get(key).equals(ADDED)) {
-                resultMessage.append("\n" + " ".repeat(EDITED_LINE_SPACE_COUNT) + EDIT_SIGN[0]
+                resultMessage.append("\n" + " ".repeat(EDITED_LINE_SPACE_COUNT) + PLUS
                         + " " + key + ": " + secondFileAsHashMap.get(key));
             }
         }
