@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedMap;
 
-import static hexlet.code.Comparator.KEY_STATUS;
+import static hexlet.code.Comparator.*;
 import static hexlet.code.formatters.Stylish.EDIT_SIGN;
 
 public class Json {
@@ -19,20 +19,20 @@ public class Json {
         HashMap<String, String> map = new HashMap<>();
 
         for (String key : differenceMap.keySet()) {
-            if (differenceMap.get(key).equals(KEY_STATUS[1])) {
+            if (differenceMap.get(key).equals(NOT_EDITED)) {
                 map.put(key, String.valueOf(firstFileAsHashMap.get(key)));
             }
-            if (differenceMap.get(key).equals(KEY_STATUS[0])) {
+            if (differenceMap.get(key).equals(EDITED)) {
                 map.put(EDIT_SIGN[1]
                         + key, String.valueOf(firstFileAsHashMap.get(key)));
                 map.put(EDIT_SIGN[0]
                         + key, String.valueOf(secondFileAsHashMap.get(key)));
             }
-            if (differenceMap.get(key).equals(KEY_STATUS[2])) {
+            if (differenceMap.get(key).equals(REMOVED)) {
                 map.put(EDIT_SIGN[1]
                         + key, String.valueOf(firstFileAsHashMap.get(key)));
             }
-            if (differenceMap.get(key).equals(KEY_STATUS[3])) {
+            if (differenceMap.get(key).equals(ADDED)) {
                 map.put(EDIT_SIGN[0]
                         + key, String.valueOf(secondFileAsHashMap.get(key)));
             }
