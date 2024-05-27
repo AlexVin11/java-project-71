@@ -75,20 +75,25 @@ public class DifferTest {
         assertEquals(stylishCompareFlatFileContent,
                 Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.yaml"));
         assertEquals(stylishCompareFlatFileContent,
-                Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.json", "stylish"));
+                Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.json",
+                        "stylish"));
         assertEquals(plainCompareFlatFileContent,
-                Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.json", "plain"));
+                Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.json",
+                        "plain"));
         assertEquals(stylishCompareNestedFileContent,
                 Differ.generate("src/test/resources/nestedfile1.json", "src/test/resources/nestedfile2.json"));
         assertEquals(stylishCompareNestedFileContent,
                 Differ.generate("src/test/resources/nestedfile1.yaml", "src/test/resources/nestedfile2.yaml"));
         assertEquals(stylishCompareNestedFileContent,
-                Differ.generate("src/test/resources/nestedfile1.json", "src/test/resources/nestedfile2.yaml", "stylish"));
+                Differ.generate("src/test/resources/nestedfile1.json", "src/test/resources/nestedfile2.yaml",
+                        "stylish"));
         assertEquals(plainCompareNestedFileContent,
                 Differ.generate("src/test/resources/nestedfile1.json",
-                        "src/test/resources/nestedfile2.yaml", "plain"));
+                        "src/test/resources/nestedfile2.yaml",
+                        "plain"));
         assertEquals(compareNestedFileContentAsJson,
                 Differ.generate("src/test/resources/nestedfile1.json",
-                        "src/test/resources/nestedfile2.yaml", "json"));
+                        "src/test/resources/nestedfile2.yaml",
+                        "json"));
     }
 }
