@@ -33,7 +33,6 @@ dependencies {
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.17.1")
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.17.1")
-
 }
 
 tasks.withType<JavaCompile>(){
