@@ -5,13 +5,13 @@ import java.util.Objects;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import static hexlet.code.ValueState.ADDED;
+import static hexlet.code.ValueState.EDITED;
+import static hexlet.code.ValueState.NOT_EDITED;
+import static hexlet.code.ValueState.REMOVED;
+
 
 public class Comparator {
-
-    public static final String EDITED = "edited";
-    public static final String NOT_EDITED = "not edited";
-    public static final String REMOVED = "removed";
-    public static final String ADDED = "added";
 
     public static SortedMap<String, String> generateKeyStatusHashMap(Map<String, Object> firstFile,
                                                                      Map<String, Object> secondFile) {
