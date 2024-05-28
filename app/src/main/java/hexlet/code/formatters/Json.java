@@ -7,8 +7,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedMap;
 
-import static hexlet.code.Comparator.*;
-import static hexlet.code.formatters.Stylish.*;
+import static hexlet.code.Comparator.ADDED;
+import static hexlet.code.Comparator.EDITED;
+import static hexlet.code.Comparator.NOT_EDITED;
+import static hexlet.code.Comparator.REMOVED;
+import static hexlet.code.formatters.Stylish.MINUS;
+import static hexlet.code.formatters.Stylish.PLUS;
 
 public class Json {
 
