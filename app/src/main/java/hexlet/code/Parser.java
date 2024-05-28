@@ -18,11 +18,11 @@ public class Parser {
         if (type.equals("yaml")) {
             return yamlMapper.readValue(content, new TypeReference<>() {
             });
-        } else if (type.equals("json")) {
-            return jsonMapper.readValue(content, new TypeReference<>() {
+        } else if (type.equals("yml")) {
+            return ymlMapper.readValue(content, new TypeReference<>() {
             });
         } else {
-            return ymlMapper.readValue(content, new TypeReference<>() {
+            return jsonMapper.readValue(content, new TypeReference<>() {
             });
         }
     }
