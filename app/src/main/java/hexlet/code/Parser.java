@@ -2,6 +2,7 @@ package hexlet.code;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 import java.util.HashMap;
@@ -9,14 +10,19 @@ import java.util.Map;
 
 public class Parser {
 
-    public static Map<String, Object> parseFileContentToMap(String content) throws Exception {
-        if (content.startsWith("---")) {
-            ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-            return mapper.readValue(content, new TypeReference<>() {
+    public static Map<String, Object> parseFileContentToMap(String content, String type) throws Exception {
+        ObjectMapper yamlMapper = new ObjectMapper(new YAMLFactory());
+        ObjectMapper jsonMapper = new ObjectMapper();
+        ObjectMapper ymlMapper = new XmlMapper();
+
+        if (type.equals("yaml")) {
+            return yamlMapper.readValue(content, new TypeReference<>() {
+            });
+        } else if (type.equals("json")) {
+            return jsonMapper.readValue(content, new TypeReference<>() {
             });
         } else {
-            ObjectMapper mapper = new ObjectMapper();
-            return mapper.readValue(content, new TypeReference<>() {
+            return ymlMapper.readValue(content, new TypeReference<>() {
             });
         }
     }

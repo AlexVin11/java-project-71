@@ -8,7 +8,10 @@ import java.util.TreeMap;
 
 public class Comparator {
 
-    public static final String[] KEY_STATUS = {"key edited", "key not edited", "key removed", "key added"};
+    public static final String EDITED = "edited";
+    public static final String NOT_EDITED = "not edited";
+    public static final String REMOVED = "removed";
+    public static final String ADDED = "added";
 
     public static SortedMap<String, String> generateKeyStatusHashMap(Map<String, Object> firstFile,
                                                                      Map<String, Object> secondFile) {
@@ -19,19 +22,19 @@ public class Comparator {
         for (var secondFileEntry : secondMapEntrys) {
             if (firstFile.containsKey(secondFileEntry.getKey())
                     && Objects.equals(firstFile.get(secondFileEntry.getKey()), secondFileEntry.getValue())) {
-                mapOfKeysStatus.put(secondFileEntry.getKey(), KEY_STATUS[1]);
+                mapOfKeysStatus.put(secondFileEntry.getKey(), NOT_EDITED);
             }
             if (!firstFile.containsKey(secondFileEntry.getKey())) {
-                mapOfKeysStatus.put(secondFileEntry.getKey(), KEY_STATUS[3]);
+                mapOfKeysStatus.put(secondFileEntry.getKey(), ADDED);
             }
             if (firstFile.containsKey(secondFileEntry.getKey())
                     && !Objects.equals(firstFile.get(secondFileEntry.getKey()), secondFileEntry.getValue())) {
-                mapOfKeysStatus.put(secondFileEntry.getKey(), KEY_STATUS[0]);
+                mapOfKeysStatus.put(secondFileEntry.getKey(), EDITED);
             }
         }
         for (var firstFileEntry : firstMapEntrys) {
             if (!secondFile.containsKey(firstFileEntry.getKey())) {
-                mapOfKeysStatus.put(firstFileEntry.getKey(), KEY_STATUS[2]);
+                mapOfKeysStatus.put(firstFileEntry.getKey(), REMOVED);
             }
         }
         return mapOfKeysStatus;

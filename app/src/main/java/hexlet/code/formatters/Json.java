@@ -7,8 +7,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedMap;
 
-import static hexlet.code.Comparator.KEY_STATUS;
-import static hexlet.code.formatters.Stylish.EDIT_SIGN;
+import static hexlet.code.Comparator.ADDED;
+import static hexlet.code.Comparator.EDITED;
+import static hexlet.code.Comparator.NOT_EDITED;
+import static hexlet.code.Comparator.REMOVED;
+import static hexlet.code.formatters.Stylish.MINUS;
+import static hexlet.code.formatters.Stylish.PLUS;
 
 public class Json {
 
@@ -19,21 +23,21 @@ public class Json {
         HashMap<String, String> map = new HashMap<>();
 
         for (String key : differenceMap.keySet()) {
-            if (differenceMap.get(key).equals(KEY_STATUS[1])) {
+            if (differenceMap.get(key).equals(NOT_EDITED)) {
                 map.put(key, String.valueOf(firstFileAsHashMap.get(key)));
             }
-            if (differenceMap.get(key).equals(KEY_STATUS[0])) {
-                map.put(EDIT_SIGN[1]
+            if (differenceMap.get(key).equals(EDITED)) {
+                map.put(MINUS
                         + key, String.valueOf(firstFileAsHashMap.get(key)));
-                map.put(EDIT_SIGN[0]
+                map.put(PLUS
                         + key, String.valueOf(secondFileAsHashMap.get(key)));
             }
-            if (differenceMap.get(key).equals(KEY_STATUS[2])) {
-                map.put(EDIT_SIGN[1]
+            if (differenceMap.get(key).equals(REMOVED)) {
+                map.put(MINUS
                         + key, String.valueOf(firstFileAsHashMap.get(key)));
             }
-            if (differenceMap.get(key).equals(KEY_STATUS[3])) {
-                map.put(EDIT_SIGN[0]
+            if (differenceMap.get(key).equals(ADDED)) {
+                map.put(PLUS
                         + key, String.valueOf(secondFileAsHashMap.get(key)));
             }
         }

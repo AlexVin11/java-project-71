@@ -5,7 +5,9 @@ import hexlet.code.Parser;
 import java.util.Map;
 import java.util.SortedMap;
 
-import static hexlet.code.Comparator.KEY_STATUS;
+import static hexlet.code.Comparator.ADDED;
+import static hexlet.code.Comparator.EDITED;
+import static hexlet.code.Comparator.REMOVED;
 
 
 public class Plain {
@@ -18,11 +20,11 @@ public class Plain {
         StringBuilder resultMessage = new StringBuilder();
 
         for (String key : differenceMap.keySet()) {
-            if (differenceMap.get(key).equals(KEY_STATUS[0])) {
+            if (differenceMap.get(key).equals(EDITED)) {
                 resultMessage.append("Property '" + key + "' was updated. From ");
                 String oldValue = firstFileAsStringsMap.get(key);
                 String newValue = secondFileAsStringsMap.get(key);
-                if (oldValue.contains("{") || oldValue.contains("[")) {
+                if (isComplex(oldValue)) {
                     resultMessage.append("[complex value] to ");
                 } else {
                     if (String.class.isInstance(firstFileAsHashMap.get(key))) {
@@ -31,7 +33,7 @@ public class Plain {
                         resultMessage.append(oldValue + " to ");
                     }
                 }
-                if (newValue.contains("{") || newValue.contains("[")) {
+                if (isComplex(newValue)) {
                     resultMessage.append("[complex value]" + "\n");
                 } else {
                     if (String.class.isInstance(secondFileAsHashMap.get(key))) {
@@ -41,13 +43,13 @@ public class Plain {
                     }
                 }
             }
-            if (differenceMap.get(key).equals(KEY_STATUS[2])) {
+            if (differenceMap.get(key).equals(REMOVED)) {
                 resultMessage.append("Property '" + key + "' was removed" + "\n");
             }
-            if (differenceMap.get(key).equals(KEY_STATUS[3])) {
+            if (differenceMap.get(key).equals(ADDED)) {
                 resultMessage.append("Property '" + key + "' was added with value: ");
                 String newValue = secondFileAsStringsMap.get(key);
-                if (newValue.contains("{") || newValue.contains("[")) {
+                if (isComplex(newValue)) {
                     resultMessage.append("[complex value]" + "\n");
                 } else {
                     if (String.class.isInstance(secondFileAsHashMap.get(key))) {
@@ -59,5 +61,12 @@ public class Plain {
             }
         }
         return resultMessage.delete(resultMessage.length() - 1, resultMessage.length()).toString();
+    }
+
+    public static boolean isComplex(String key) {
+        if (key.contains("{") || key.contains("[")) {
+            return true;
+        }
+        return false;
     }
 }
