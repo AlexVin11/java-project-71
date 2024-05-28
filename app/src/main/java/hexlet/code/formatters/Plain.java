@@ -1,6 +1,5 @@
 package hexlet.code.formatters;
 
-import hexlet.code.Comparator;
 import hexlet.code.Parser;
 
 import java.util.Map;
