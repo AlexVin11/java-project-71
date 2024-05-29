@@ -5,7 +5,6 @@ import org.apache.commons.io.FilenameUtils;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
-import java.util.SortedMap;
 
 public class Differ {
 
