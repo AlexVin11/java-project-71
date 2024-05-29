@@ -22,8 +22,8 @@ public class Differ {
         String secondFileContent  = Files.readString(processedSecondPath);
         Map<String, Object> firstFileAsHashMap = Parser.parseFileContentToMap(firstFileContent, firstFileType);
         Map<String, Object> secondFileAsHashMap = Parser.parseFileContentToMap(secondFileContent, secondFileType);
-        SortedMap<String, String> differenceMap = Comparator.generateKeyStatusHashMap(firstFileAsHashMap,
+        Map<String, Object> diffmap = Comparator.generateKeyStatusHashMap(firstFileAsHashMap,
                 secondFileAsHashMap);
-        return Formatter.generateFormatedMessage(firstFileAsHashMap, secondFileAsHashMap, differenceMap, format);
+        return Formatter.generateFormatedMessage(diffmap, format);
     }
 }
