@@ -1,40 +1,41 @@
 package hexlet.code;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.Set;
+import java.util.TreeSet;
 
 
 public class Comparator {
 
-    public static final String EDITED = "edited";
-    public static final String NOT_EDITED = "not edited";
-    public static final String REMOVED = "removed";
-    public static final String ADDED = "added";
+    public static Map<String, Object> generateKeyStatusHashMap(Map<String, Object> firstFile,
+                                                               Map<String, Object> secondFile) {
+        Set<String> keys = new TreeSet<>(firstFile.keySet());
+        keys.addAll(secondFile.keySet());
+        Map<String, Object> mapOfKeysStatus = new LinkedHashMap<>();
 
-    public static SortedMap<String, String> generateKeyStatusHashMap(Map<String, Object> firstFile,
-                                                                     Map<String, Object> secondFile) {
-        var firstMapEntrys = firstFile.entrySet();
-        var secondMapEntrys = secondFile.entrySet();
-        SortedMap<String, String> mapOfKeysStatus = new TreeMap<>();
-
-        for (var secondFileEntry : secondMapEntrys) {
-            if (firstFile.containsKey(secondFileEntry.getKey())
-                    && Objects.equals(firstFile.get(secondFileEntry.getKey()), secondFileEntry.getValue())) {
-                mapOfKeysStatus.put(secondFileEntry.getKey(), NOT_EDITED);
+        for (String key : keys) {
+            if (firstFile.containsKey(key) && !secondFile.containsKey(key)) {
+                Object value = !Objects.isNull(firstFile.get(key)) ? firstFile.get(key) : null;
+                mapOfKeysStatus.put(key, new ValueAndState(ValueAndState.REMOVED,
+                        value, null));
             }
-            if (!firstFile.containsKey(secondFileEntry.getKey())) {
-                mapOfKeysStatus.put(secondFileEntry.getKey(), ADDED);
+            if (secondFile.containsKey(key) && !firstFile.containsKey(key)) {
+                Object value = !Objects.isNull(secondFile.get(key)) ? secondFile.get(key) : null;
+                mapOfKeysStatus.put(key, new ValueAndState(ValueAndState.ADDED,
+                        null, value));
             }
-            if (firstFile.containsKey(secondFileEntry.getKey())
-                    && !Objects.equals(firstFile.get(secondFileEntry.getKey()), secondFileEntry.getValue())) {
-                mapOfKeysStatus.put(secondFileEntry.getKey(), EDITED);
-            }
-        }
-        for (var firstFileEntry : firstMapEntrys) {
-            if (!secondFile.containsKey(firstFileEntry.getKey())) {
-                mapOfKeysStatus.put(firstFileEntry.getKey(), REMOVED);
+            if (firstFile.containsKey(key) && secondFile.containsKey(key)) {
+                Object firstValue = !Objects.isNull(firstFile.get(key)) ? firstFile.get(key) : null;
+                Object secondValue = !Objects.isNull(secondFile.get(key)) ? secondFile.get(key) : null;
+                if (Objects.equals(firstValue, secondValue)) {
+                    mapOfKeysStatus.put(key, new ValueAndState(ValueAndState.NOT_EDITED,
+                            firstValue, secondValue));
+                } else {
+                    mapOfKeysStatus.put(key, new ValueAndState(ValueAndState.EDITED,
+                            firstValue, secondValue));
+                }
             }
         }
         return mapOfKeysStatus;

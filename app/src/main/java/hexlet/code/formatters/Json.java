@@ -3,45 +3,14 @@ package hexlet.code.formatters;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.SortedMap;
 
-import static hexlet.code.Comparator.ADDED;
-import static hexlet.code.Comparator.EDITED;
-import static hexlet.code.Comparator.NOT_EDITED;
-import static hexlet.code.Comparator.REMOVED;
-import static hexlet.code.formatters.Stylish.MINUS;
-import static hexlet.code.formatters.Stylish.PLUS;
 
 public class Json {
 
-    public static String generateJson(Map<String, Object> firstFileAsHashMap,
-                                      Map<String, Object> secondFileAsHashMap,
-                                      SortedMap<String, String> differenceMap) throws JsonProcessingException {
+    public static String generateJson(Map<String, Object> differenceMap) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        HashMap<String, String> map = new HashMap<>();
-
-        for (String key : differenceMap.keySet()) {
-            if (differenceMap.get(key).equals(NOT_EDITED)) {
-                map.put(key, String.valueOf(firstFileAsHashMap.get(key)));
-            }
-            if (differenceMap.get(key).equals(EDITED)) {
-                map.put(MINUS
-                        + key, String.valueOf(firstFileAsHashMap.get(key)));
-                map.put(PLUS
-                        + key, String.valueOf(secondFileAsHashMap.get(key)));
-            }
-            if (differenceMap.get(key).equals(REMOVED)) {
-                map.put(MINUS
-                        + key, String.valueOf(firstFileAsHashMap.get(key)));
-            }
-            if (differenceMap.get(key).equals(ADDED)) {
-                map.put(PLUS
-                        + key, String.valueOf(secondFileAsHashMap.get(key)));
-            }
-        }
-        String jsonData = mapper.writeValueAsString(map);
+        String jsonData = mapper.writeValueAsString(differenceMap);
         return jsonData;
     }
 }
