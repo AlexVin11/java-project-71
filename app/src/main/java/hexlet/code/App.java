@@ -10,19 +10,19 @@ import java.util.concurrent.Callable;
 @Command(name = "gendiff",
         description = "Compares two configuration files and shows a difference.")
 
-public class App implements Callable<Integer> {
+public final class App implements Callable<Integer> {
 
     @Option(names = {"-f", "--format"}, defaultValue = "stylish",
             description = "output format [default: generateStylishOutput]", paramLabel = "format")
-    String format;
+    private String format;
     @Option(names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit.")
-    boolean helpRequested = false;
+    private boolean helpRequested = false;
     @Option(names = {"-V", "--version"}, versionHelp = true, description = "Print version information and exit.")
-    boolean versionInfoRequested = false;
+    private boolean versionInfoRequested = false;
     @Parameters(index = "0", description = "path to first file",
-            paramLabel = "filepath1") String firstFileName;
+            paramLabel = "filepath1") private String firstFileName;
     @Parameters(index = "1", description = "path to second file",
-            paramLabel = "filepath2") String secondFileName;
+            paramLabel = "filepath2") private String secondFileName;
 
     public static void main(String[] args) {
         System.exit(new CommandLine(new App()).execute(args));
