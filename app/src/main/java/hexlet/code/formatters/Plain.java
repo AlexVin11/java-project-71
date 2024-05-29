@@ -1,33 +1,32 @@
 package hexlet.code.formatters;
 
-import hexlet.code.Parser;
+import hexlet.code.ValueAndState;
 
 import java.util.Map;
-import java.util.SortedMap;
+import java.util.Objects;
 
-import static hexlet.code.Comparator.ADDED;
-import static hexlet.code.Comparator.EDITED;
-import static hexlet.code.Comparator.REMOVED;
+import static hexlet.code.ValueAndState.EDITED;
+import static hexlet.code.ValueAndState.ADDED;
+import static hexlet.code.ValueAndState.REMOVED;
 
 
 public class Plain {
 
-    public static String generatePlainOutput(Map<String, Object> firstFileAsHashMap,
-                                             Map<String, Object> secondFileAsHashMap,
-                                             SortedMap<String, String> differenceMap) {
-        Map<String, String> firstFileAsStringsMap = Parser.convertMapValuesToString(firstFileAsHashMap);
-        Map<String, String> secondFileAsStringsMap = Parser.convertMapValuesToString(secondFileAsHashMap);
+    public static String generatePlainOutput(Map<String, Object> differenceMap) {
         StringBuilder resultMessage = new StringBuilder();
 
-        for (String key : differenceMap.keySet()) {
-            if (differenceMap.get(key).equals(EDITED)) {
+        for (var entry : differenceMap.entrySet()) {
+            String key = entry.getKey();
+            ValueAndState valueAndState = (ValueAndState) differenceMap.get(key);
+            String status = valueAndState.getKeyStatus();
+            if (status.equals(EDITED)) {
                 resultMessage.append("Property '" + key + "' was updated. From ");
-                String oldValue = firstFileAsStringsMap.get(key);
-                String newValue = secondFileAsStringsMap.get(key);
+                Object oldValue = valueAndState.getOldValue();
+                Object newValue = valueAndState.getNewValue();
                 if (isComplex(oldValue)) {
                     resultMessage.append("[complex value] to ");
                 } else {
-                    if (String.class.isInstance(firstFileAsHashMap.get(key))) {
+                    if (String.class.isInstance(oldValue)) {
                         resultMessage.append("'" + oldValue + "'" + " to ");
                     } else {
                         resultMessage.append(oldValue + " to ");
@@ -36,23 +35,23 @@ public class Plain {
                 if (isComplex(newValue)) {
                     resultMessage.append("[complex value]" + "\n");
                 } else {
-                    if (String.class.isInstance(secondFileAsHashMap.get(key))) {
+                    if (String.class.isInstance(newValue)) {
                         resultMessage.append("'" + newValue + "'" + "\n");
                     } else {
                         resultMessage.append(newValue + "\n");
                     }
                 }
             }
-            if (differenceMap.get(key).equals(REMOVED)) {
+            if (status.equals(REMOVED)) {
                 resultMessage.append("Property '" + key + "' was removed" + "\n");
             }
-            if (differenceMap.get(key).equals(ADDED)) {
+            if (status.equals(ADDED)) {
                 resultMessage.append("Property '" + key + "' was added with value: ");
-                String newValue = secondFileAsStringsMap.get(key);
+                Object newValue = valueAndState.getNewValue();
                 if (isComplex(newValue)) {
                     resultMessage.append("[complex value]" + "\n");
                 } else {
-                    if (String.class.isInstance(secondFileAsHashMap.get(key))) {
+                    if (String.class.isInstance(newValue)) {
                         resultMessage.append("'" + newValue + "'" + "\n");
                     } else {
                         resultMessage.append(newValue + "\n");
@@ -63,8 +62,11 @@ public class Plain {
         return resultMessage.delete(resultMessage.length() - 1, resultMessage.length()).toString();
     }
 
-    public static boolean isComplex(String key) {
-        if (key.contains("{") || key.contains("[")) {
+    public static boolean isComplex(Object content) {
+        if (Objects.isNull(content)) {
+            return false;
+        }
+        if (content.toString().contains("{") || content.toString().contains("[")) {
             return true;
         }
         return false;
