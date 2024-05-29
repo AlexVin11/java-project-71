@@ -1,9 +1,14 @@
 package hexlet.code.formatters;
 
-import hexlet.code.Comparator;
+import hexlet.code.ValueAndState;
 
 import java.util.Map;
-import java.util.SortedMap;
+
+import static hexlet.code.ValueAndState.ADDED;
+import static hexlet.code.ValueAndState.EDITED;
+import static hexlet.code.ValueAndState.NOT_EDITED;
+import static hexlet.code.ValueAndState.REMOVED;
+
 
 public class Stylish {
 
@@ -12,32 +17,33 @@ public class Stylish {
     public static final char PLUS = '+';
     public static final char MINUS = '-';
 
-    public static String generateStylishOutput(Map<String, Object> firstFileAsHashMap,
-                                               Map<String, Object> secondFileAsHashMap,
-                                               SortedMap<String, String> differenceMap) {
+    public static String generateStylishOutput(Map<String, Object> differenceMap) {
         StringBuilder resultMessage = new StringBuilder("{");
 
-        for (String key : differenceMap.keySet()) {
-            if (differenceMap.get(key).equals(Comparator.NOT_EDITED)) {
+        for (var entry : differenceMap.entrySet()) {
+            String key = entry.getKey();
+            ValueAndState value = (ValueAndState) entry.getValue();
+            String status = value.getKeyStatus();
+            if (status.equals(NOT_EDITED)) {
                 resultMessage.append("\n"
-                        + " ".repeat(NOT_EDITED_LINE_SPACE_COUNT) + key + ": " + firstFileAsHashMap.get(key));
+                        + " ".repeat(NOT_EDITED_LINE_SPACE_COUNT) + key + ": " + value.getOldValue());
             }
-            if (differenceMap.get(key).equals(Comparator.EDITED)) {
+            if (status.equals(EDITED)) {
                 resultMessage.append("\n"
                         + " ".repeat(EDITED_LINE_SPACE_COUNT) + MINUS
-                        + " " + key + ": " + firstFileAsHashMap.get(key));
+                        + " " + key + ": " + value.getOldValue());
                 resultMessage.append("\n"
                         + " ".repeat(EDITED_LINE_SPACE_COUNT) + PLUS
-                        + " " + key + ": " + secondFileAsHashMap.get(key));
+                        + " " + key + ": " + value.getNewValue());
             }
-            if (differenceMap.get(key).equals(Comparator.REMOVED)) {
+            if (status.equals(REMOVED)) {
                 resultMessage.append("\n"
                         + " ".repeat(EDITED_LINE_SPACE_COUNT) + MINUS
-                        + " " + key + ": " + firstFileAsHashMap.get(key));
+                        + " " + key + ": " + value.getOldValue());
             }
-            if (differenceMap.get(key).equals(Comparator.ADDED)) {
+            if (status.equals(ADDED)) {
                 resultMessage.append("\n" + " ".repeat(EDITED_LINE_SPACE_COUNT) + PLUS
-                        + " " + key + ": " + secondFileAsHashMap.get(key));
+                        + " " + key + ": " + value.getNewValue());
             }
         }
         resultMessage.append("\n" + "}");
