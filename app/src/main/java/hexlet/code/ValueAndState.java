@@ -1,11 +1,13 @@
 package hexlet.code;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class ValueState {
+@AllArgsConstructor
+public class ValueAndState {
 
     public static final String EDITED = "edited";
     public static final String NOT_EDITED = "not edited";
@@ -15,10 +17,4 @@ public class ValueState {
     private String keyStatus;
     private Object oldValue;
     private Object newValue;
-
-    ValueState(String keyStatus, Object oldValue, Object newValue) {
-        keyStatus = keyStatus;
-        oldValue = oldValue;
-        newValue = newValue;
-    }
 }
