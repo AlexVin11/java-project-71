@@ -10,21 +10,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
 
-    static Path pathToStylishResultForFlatFiles = Path.of("src/test/resources/flatstylishresult.txt")
+    private static Path pathToStylishResultForFlatFiles = Path.of("src/test/resources/flatstylishresult.txt")
             .toAbsolutePath().normalize();
-    static String stylishCompareFlatFileContent;
-    static Path pathToStylishNestedResultFile = Path.of("src/test/resources/nestedstylishresult.txt")
+    private static String stylishCompareFlatFileContent;
+    private static Path pathToStylishNestedResultFile = Path.of("src/test/resources/nestedstylishresult.txt")
             .toAbsolutePath().normalize();
-    static String stylishCompareNestedFileContent;
-    static Path pathToPlainNestedResultFile = Path.of("src/test/resources/nestedplainresult.txt")
+    private static String stylishCompareNestedFileContent;
+    private static Path pathToPlainNestedResultFile = Path.of("src/test/resources/nestedplainresult.txt")
             .toAbsolutePath().normalize();
-    static String plainCompareNestedFileContent;
-    static Path pathToJsonNestedResultFile = Path.of("src/test/resources/newjsonresult.txt")
+    private static String plainCompareNestedFileContent;
+    private static Path pathToJsonNestedResultFile = Path.of("src/test/resources/newjsonresult.txt")
             .toAbsolutePath().normalize();
-    static String compareNestedFileContentAsJson;
-    static Path pathToPlainResultForFlatFiles = Path.of("src/test/resources/flatplainresult.txt")
+    private static String compareNestedFileContentAsJson;
+    private static Path pathToPlainResultForFlatFiles = Path.of("src/test/resources/flatplainresult.txt")
             .toAbsolutePath().normalize();
-    static String plainCompareFlatFileContent;
+    private static String plainCompareFlatFileContent;
 
     static {
         try {
@@ -93,7 +93,5 @@ public class DifferTest {
         assertEquals(compareNestedFileContentAsJson,
                 Differ.generate("src/test/resources/nestedfile1.json", "src/test/resources/nestedfile2.yaml",
                         "json"));
-        /*assertEquals(stylishCompareFlatFileContent,
-                Differ.generate("src/test/resources/flatfile1.yml", "src/test/resources/flatfile2.yml"));*/
     }
 }
