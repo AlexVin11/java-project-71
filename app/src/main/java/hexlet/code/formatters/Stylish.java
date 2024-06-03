@@ -4,10 +4,10 @@ import hexlet.code.ValueAndState;
 
 import java.util.Map;
 
-import static hexlet.code.ValueAndState.ADDED;
-import static hexlet.code.ValueAndState.EDITED;
-import static hexlet.code.ValueAndState.NOT_EDITED;
-import static hexlet.code.ValueAndState.REMOVED;
+import static hexlet.code.Comparator.ADDED;
+import static hexlet.code.Comparator.EDITED;
+import static hexlet.code.Comparator.NOT_EDITED;
+import static hexlet.code.Comparator.REMOVED;
 
 
 public class Stylish {
