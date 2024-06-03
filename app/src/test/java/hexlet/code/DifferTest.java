@@ -3,7 +3,6 @@ package hexlet.code;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.nio.file.Path;
 
 import static java.nio.file.Files.readString;
@@ -121,33 +120,6 @@ public class DifferTest {
                         "src/test/resources/nestedfile2.json",
                         "json"));
     }
-    /*public void testGenerate() throws Exception {
-        assertEquals(stylishCompareFlatFileContent,
-                Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.json"));
-        assertEquals(stylishCompareFlatFileContent,
-                Differ.generate("src/test/resources/file1.yaml", "src/test/resources/file2.yaml"));
-        assertEquals(stylishCompareFlatFileContent,
-                Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.yaml"));
-        assertEquals(stylishCompareFlatFileContent,
-                Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.json",
-                        "stylish"));
-        assertEquals(plainCompareFlatFileContent,
-                Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.json",
-                        "plain"));
-        assertEquals(stylishCompareNestedFileContent,
-                Differ.generate("src/test/resources/nestedfile1.json", "src/test/resources/nestedfile2.json"));
-        assertEquals(stylishCompareNestedFileContent,
-                Differ.generate("src/test/resources/nestedfile1.yaml", "src/test/resources/nestedfile2.yaml"));
-        assertEquals(stylishCompareNestedFileContent,
-                Differ.generate("src/test/resources/nestedfile1.json", "src/test/resources/nestedfile2.yaml",
-                        "stylish"));
-        assertEquals(plainCompareNestedFileContent,
-                Differ.generate("src/test/resources/nestedfile1.json", "src/test/resources/nestedfile2.yaml",
-                        "plain"));
-        assertEquals(asJsonCompareNestedFileContent,
-                Differ.generate("src/test/resources/nestedfile1.json", "src/test/resources/nestedfile2.yaml",
-                        "json"));
-    }*/
 
     public static Path pathNormaliser(String pathToFile) {
         return Path.of(pathToFile).toAbsolutePath().normalize();
