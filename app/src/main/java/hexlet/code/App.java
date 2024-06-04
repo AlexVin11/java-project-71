@@ -13,7 +13,7 @@ import java.util.concurrent.Callable;
 public final class App implements Callable<Integer> {
 
     @Option(names = {"-f", "--format"}, defaultValue = "stylish",
-            description = "output format [default: generateStylishOutput]", paramLabel = "format")
+            description = "output format [default: stylish]", paramLabel = "format")
     private String format;
     @Option(names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit.")
     private boolean helpRequested = false;
